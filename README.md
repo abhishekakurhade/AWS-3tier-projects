@@ -1,4 +1,4 @@
-# AWS 3-Tier Architecture Project 🏗️
+# AWS 3-Tier Architecture Project :
 
 A highly available, scalable **3-tier web application** deployed on AWS, built using core AWS networking, compute, and database services — no third-party infra tools, pure console/native AWS setup.
 
@@ -47,7 +47,7 @@ The project demonstrates a real-world production-style deployment pattern: a pub
 - **NAT Gateway** (`3tier-app-nat-gateway`) — single public NAT gateway (1 EIP) giving private subnets outbound internet access.
 - **Route Tables** — `public-RT` (public subnets → IGW), `private-RT` (app subnets → NAT), `private-db-RT` (DB subnets, local-only, no internet route).
 
-![VPC Network Architecture](screenshots/vpc-network-architecture.jpg)
+![VPC Network Architecture](frontend/src/asset/vpc.jpg)
 
 ---
 
@@ -60,7 +60,7 @@ Two Application Load Balancers were provisioned in the VPC, both spanning 2 Avai
 | `Loadbalcer-frontend` | Internet-facing | Routes public user traffic to the web tier EC2 instances |
 | `app-internal-LB` | Internal | Routes internal traffic from the web tier to the app tier EC2 instances |
 
-![Load Balancer Dashboard](screenshots/load-balancer-dashboard.jpg)
+![Load Balancer Dashboard](frontend/src/asset/load-balancer.jpg)
 
 ---
 
@@ -68,7 +68,7 @@ Two Application Load Balancers were provisioned in the VPC, both spanning 2 Avai
 
 Sample deployed application — a registration form that writes to the RDS-backed data tier and lists registered records.
 
-![Application UI](screenshots/app-registration-ui.jpg)
+![Application UI](frontend/src/asset/frontend.jpg)
 
 ---
 
@@ -84,20 +84,7 @@ Sample deployed application — a registration form that writes to the RDS-backe
 
 ---
 
-## 📁 Repository Structure
 
-```
-AWS-3tier-projects/
-├── README.md
-└── screenshots/
-    ├── vpc-network-architecture.jpg
-    ├── load-balancer-dashboard.jpg
-    └── app-registration-ui.jpg
-```
-
-> Add your application source code (web tier / app tier) and any IaC scripts as additional folders, e.g. `web-tier/`, `app-tier/`, `scripts/`.
-
----
 
 ## 🚀 Deployment Steps (Summary)
 
@@ -123,11 +110,3 @@ AWS-3tier-projects/
 
 ---
 
-## 👤 Author
-
-**Abhishek**
-Project: AWS 3-Tier Architecture Deployment
-
----
-
-*If you found this project helpful, consider giving it a ⭐!*
