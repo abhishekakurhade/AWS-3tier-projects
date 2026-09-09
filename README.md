@@ -7,7 +7,7 @@ The project demonstrates a real-world production-style deployment pattern: a pub
 ---
 
 ## 📐 Architecture Overview
-
+![App Screenshot](frontend/src/asset/AWS-daigram.png)
 
 **Traffic flow:** Internet → Internet Gateway → Internet-facing ALB → Web Tier (public subnets) → Internal ALB → App Tier (private subnets) → RDS (private DB subnets). Private subnets reach the internet **outbound-only** (for patches/updates) via a NAT Gateway.
 
