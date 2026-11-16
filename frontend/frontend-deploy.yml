@@ -17,6 +17,6 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: abhishekakurhade/project-frontend:TAG
+          image: abhishekakurhade/project-frontend:IMAGE_TAG
           ports:
             - containerPort: 80
