@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
     - name: backend
-      image: backend:latest
+      image: abhishekakurhade/project-backend:TAG
       ports:
         - containerPort: 80
