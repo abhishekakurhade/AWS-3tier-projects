@@ -34,7 +34,7 @@ data "aws_subnets" "subnet_ids" {
 }
 
 resource "aws_eks_cluster" "my_cluster" {
-  name     = "my-cluster"
+  name     = "my-cluster-01"
   role_arn = aws_iam_role.cbz_eks_role.arn
 
   vpc_config {
@@ -79,7 +79,7 @@ resource "aws_iam_role_policy_attachment" "node_AmazonEKS_CNI_Policy" {
 # EKS Managed Node Group
 resource "aws_eks_node_group" "my_node_group" {
   cluster_name    = aws_eks_cluster.my_cluster.name
-  node_group_name = "my-cluster-nodegroup"
+  node_group_name = "my-nodegroup-01"
   node_role_arn   = aws_iam_role.eks_node_role.arn
   subnet_ids      = data.aws_subnets.subnet_ids.ids
 
