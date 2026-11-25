@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 resource "aws_iam_role" "cbz_eks_role" {
-  name = "cbz-eks-role"
+  name = "cbz-eks-roles"
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
     Statement = [{
@@ -49,7 +49,7 @@ resource "aws_eks_cluster" "my_cluster" {
 
 
 resource "aws_iam_role" "eks_node_role" {
-  name = "cbz-eks-node-role"
+  name = "cbz-eks-node-roles"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -79,7 +79,7 @@ resource "aws_iam_role_policy_attachment" "node_AmazonEKS_CNI_Policy" {
 # EKS Managed Node Group
 resource "aws_eks_node_group" "my_node_group" {
   cluster_name    = aws_eks_cluster.my_cluster.name
-  node_group_name = "my-nodegroup-01"
+  node_group_name = "my-cluster-nodegroups"
   node_role_arn   = aws_iam_role.eks_node_role.arn
   subnet_ids      = data.aws_subnets.subnet_ids.ids
 
