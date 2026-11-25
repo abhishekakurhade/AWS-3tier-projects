@@ -7,6 +7,6 @@ metadata:
 spec:
   containers:
     - name: backend
-      image: bhishekakurhade/3tier-backend:IMAGE_TAG
+      image: abhishekakurhade/3tier-backend:IMAGE_TAG
       ports:
         - containerPort: 80
