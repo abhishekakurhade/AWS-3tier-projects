@@ -117,10 +117,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 | `clone code` | Clones GitHub repo to Jenkins agent | ~3s |
 | `create k8s` | Runs `terraform init` + `terraform apply` to provision EKS | ~8m 58s |
 
-```
-✅  Build #2  —  SUCCESS   Nov 25, 21:38  (Full run: ~9 min 1s)
-❌  Build #1  —  FAILED    Nov 25, 21:36
-```
+
 
 ---
 
@@ -135,13 +132,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 | `push on docker` | `docker push` to Docker Hub (`abhishekakurhade/3tier-backend`) | ~5s |
 | `deploy on eks` | `kubectl apply` backend Pod + Service to EKS | ~2s |
 
-```
-✅  Build #5  —  SUCCESS   Nov 25, 17:51  (Full run: ~58s)
-❌  Build #4  —  FAILED    Nov 25, 17:12  ← push & deploy stages failed
-✅  Build #3  —  SUCCESS   Nov 25, 15:09
-✅  Build #2  —  SUCCESS   Nov 25, 16:56
-❌  Build #1  —  FAILED    Nov 25, 22:25
-```
+
 
 ---
 
@@ -156,9 +147,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 | `push on docker` | `docker push` to Docker Hub (`abhishekakurhade/3tier-frontend`) | ~10s |
 | `deploy on eks` | `kubectl apply` frontend Deployment (3 replicas) + Service | ~13s |
 
-```
-✅  Build #1  —  SUCCESS   Nov 25, 23:34  (Full run: ~49s)
-```
+
 
 > **Total deployment time** (after EKS is live): ~58s backend + ~49s frontend = **under 2 minutes end-to-end.**
 
@@ -223,26 +212,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 
 ![kubectl get all Output](frontend/src/images/eks-cluster.jpg)
 
-```bash
-$ kubectl get all
 
-NAME                                     READY   STATUS    RESTARTS   AGE
-pod/backend                              1/1     Running   0          13h
-pod/frontend-74cc86b849-cbz6f            1/1     Running   0          13h
-pod/frontend-74cc86b849-hg2n6            1/1     Running   0          13h
-pod/frontend-74cc86b849-nqb51            1/1     Running   0          13h
-
-NAME                   TYPE           CLUSTER-IP       EXTERNAL-IP                                              PORT(S)
-service/backend-svc    LoadBalancer   10.100.232.178   a7ebf77597c724e...ap-south-1.elb.amazonaws.com          8080:31939/TCP
-service/frontend-svc   LoadBalancer   10.100.150.34    a76279fbdb9204e...ap-south-1.elb.amazonaws.com          80:30322/TCP
-service/kubernetes     ClusterIP      10.100.0.1       <none>                                                   443/TCP
-
-NAME                       READY   UP-TO-DATE   AVAILABLE
-deployment.apps/frontend   3/3     3            3
-
-NAME                                  DESIRED   CURRENT   READY
-replicaset.apps/frontend-74cc86b849   3         3         3
-```
 
 ---
 
@@ -259,54 +229,13 @@ The deployed application is a **College Student Registration System**.
 - 📋 View all registered students in a live table
 - 🗑️ Delete student records
 
-**Live Frontend URL:**
-```
-http://a76279fbdb9204e6aa43a0c1907ff649-953289300.ap-south-1.elb.amazonaws.com
-```
 
-**Live Backend API URL:**
-```
-http://a7ebf77597c724e89898d2dc14f03571-2068772430.ap-south-1.elb.amazonaws.com:8080
-```
 
 ---
 
 ## 🗄️ Database Setup
 
 > See [DB_README.md](DB_README.md) for the full MariaDB installation guide.
-
-**Database name:** `student_db`
-
-### Create the Schema
-
-```sql
-USE student_db;
-
-CREATE TABLE `students` (
-  `id`             bigint(20)   NOT NULL AUTO_INCREMENT,
-  `name`           varchar(255) DEFAULT NULL,
-  `email`          varchar(255) DEFAULT NULL,
-  `course`         varchar(255) DEFAULT NULL,
-  `student_class`  varchar(255) DEFAULT NULL,
-  `percentage`     double       DEFAULT NULL,
-  `branch`         varchar(255) DEFAULT NULL,
-  `mobile_number`  varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-```
-
-### Backend DB Config (`application.properties`)
-
-```properties
-server.port=8080
-spring.datasource.url=jdbc:mariadb://<RDS-ENDPOINT>:3306/student_db?sslMode=trust
-spring.datasource.username=<DB_USER>
-spring.datasource.password=<DB_PASS>
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-```
-
-> ⚠️ **Never commit real credentials.** Use environment variables or AWS Secrets Manager in production.
 
 ---
 
@@ -393,28 +322,7 @@ kubectl get nodes   # Both nodes should show STATUS=Ready
 5. Create a **Security Group** allowing port `3306` from EKS worker node SG
 6. Copy the **endpoint** and update `backend/src/main/resources/application.properties`
 
-
-
 ---
-
-### Step 4 — Deploy Backend (`project-backend` pipeline)
-
-**Jenkins Jenkinsfile stages:**
-
-
-
----
-
-### Step 5 — Deploy Frontend (`project-frontend` pipeline)
-
-**Jenkins Jenkinsfile stages:**
-
-
-
-
-
-
-
 
 ## 🔮 Future Improvements
 
