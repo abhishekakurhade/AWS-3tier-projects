@@ -16,22 +16,6 @@
 
 ---
 
-## 📋 Table of Contents
-
-- [Architecture Overview](#-architecture-overview)
-- [Tech Stack](#-tech-stack)
-- [Project Structure](#-project-structure)
-- [CI/CD Pipelines](#-cicd-pipelines)
-- [AWS Infrastructure](#-aws-infrastructure)
-- [Kubernetes Workloads](#-kubernetes-workloads)
-- [Application UI](#-application-ui)
-- [Database Setup](#-database-setup)
-- [Local Development](#-local-development-docker-compose)
-- [Deployment Guide](#-deployment-guide)
-- [Future Improvements](#-future-improvements)
-
----
-
 ## 🏛️ Architecture Overview
 
 ![AWS Architecture Diagram](frontend/src/images/3-tier-architecture.png)
