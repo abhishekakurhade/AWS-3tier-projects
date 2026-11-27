@@ -273,57 +273,6 @@ docker compose up --build
 
 ---
 
-### Step 1 — Set Up Jenkins
-
-```bash
-# Install Jenkins on EC2 (Ubuntu)
-sudo apt update && sudo apt install -y openjdk-17-jdk
-wget -q -O - https://pkg.jenkins.io/debian/jenkins.io.key | sudo apt-key add -
-sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
-sudo apt update && sudo apt install -y jenkins
-sudo systemctl start jenkins && sudo systemctl enable jenkins
-
-# Install Docker on Jenkins agent
-sudo apt install -y docker.io
-sudo usermod -aG docker jenkins
-```
-
-Configure Jenkins credentials:
-- `dockerhub-creds` — Docker Hub username + password
-- `aws-creds` — AWS Access Key + Secret Key
-- `kubeconfig` — base64-encoded `~/.kube/config` from EKS
-
----
-
-### Step 2 — Provision EKS with Terraform (`k8s-infra` pipeline)
-
-```
-
-**What Terraform creates:**
-- IAM role `eks-role` + `AmazonEKSClusterPolicy` attachment
-- IAM role `eks-node-role` + Worker/CNI/ECR policy attachments
-- EKS cluster `my-cluster` using the default VPC subnets
-- Managed node group `cluster-nodegroup` — 2× `c7i-flex.large` On-Demand, 20 GB disk
-
-```bash
-# After apply — configure kubectl
-aws eks update-kubeconfig --region ap-south-1 --name my-cluster
-kubectl get nodes   # Both nodes should show STATUS=Ready
-```
-
----
-
-### Step 3 —  RDS (MariaDB)
-
-1. Go to **AWS Console → RDS → Create Database**
-2. Select **MariaDB**, instance class `db.t4g.micro`
-3. Set DB identifier: `database-10`, DB name: `student_db`
-4. Place it in **`ap-south-1a`**, in the same VPC as EKS
-5. Create a **Security Group** allowing port `3306` from EKS worker node SG
-6. Copy the **endpoint** and update `backend/src/main/resources/application.properties`
-
----
-
 ## 🔮 Future Improvements
 
 | Item | Description |
