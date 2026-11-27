@@ -110,7 +110,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 
 ### Pipeline 1 — `k8s-infra` (Terraform · EKS Provisioning)
 
-![Jenkins k8s-infra Pipeline](docs/images/jenkins-k8s-infra-pipeline.jpg)
+![Jenkins k8s-infra Pipeline](frontend/src/images/k8s-cluster.jpg)
 
 | Stage | What It Does | Avg Time |
 |---|---|---|
@@ -126,7 +126,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 
 ### Pipeline 2 — `project-backend` (Spring Boot · Docker · EKS Deploy)
 
-![Jenkins Backend Pipeline](docs/images/jenkins-backend-pipeline.jpg)
+![Jenkins Backend Pipeline](frontend/src/images/project-backend.jpg)
 
 | Stage | What It Does | Avg Time |
 |---|---|---|
@@ -147,7 +147,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 
 ### Pipeline 3 — `project-frontend` (React · Docker · EKS Deploy)
 
-![Jenkins Frontend Pipeline](docs/images/jenkins-frontend-pipeline.jpg)
+![Jenkins Frontend Pipeline](frontend/src/images/project-frontend.jpg)
 
 | Stage | What It Does | Avg Time |
 |---|---|---|
@@ -168,7 +168,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 
 ### EC2 Instances
 
-![AWS EC2 Instances](docs/images/aws-ec2-instances.jpg)
+![AWS EC2 Instances](frontend/src/images/instances.jpg)
 
 | Instance Name | Instance ID | Type | AZ | Role |
 |---|---|---|---|---|
@@ -181,7 +181,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 
 ### EKS Cluster — `my-cluster`
 
-![AWS EKS Cluster](docs/images/aws-eks-cluster.jpg)
+![AWS EKS Cluster](frontend/src/images/nodegroup.jpg)
 
 | Property | Value |
 |---|---|
@@ -204,7 +204,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 
 ### RDS — `database-10` (MariaDB)
 
-![AWS RDS Database](docs/images/aws-rds-database.jpg)
+![AWS RDS Database](frontend/src/images/rds-database.jpg)
 
 | Property | Value |
 |---|---|
@@ -221,7 +221,7 @@ Three Jenkins pipelines cover the full deployment lifecycle — **infrastructure
 
 ## ☸️ Kubernetes Workloads
 
-![kubectl get all Output](docs/images/kubectl-get-all.jpg)
+![kubectl get all Output](frontend/src/images/eks-cluster.jpg)
 
 ```bash
 $ kubectl get all
@@ -248,7 +248,7 @@ replicaset.apps/frontend-74cc86b849   3         3         3
 
 ## 🖥️ Application UI
 
-![Application UI](docs/images/app-ui.jpg)
+![Application UI](frontend/src/images/frontendpage.jpg)
 
 The deployed application is a **College Student Registration System**.
 
