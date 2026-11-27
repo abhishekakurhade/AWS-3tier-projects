@@ -34,7 +34,7 @@
 
 ## 🏛️ Architecture Overview
 
-![AWS Architecture Diagram](docs/images/aws-architecture-diagram.png)
+![AWS Architecture Diagram](frontend/src/images/3-tier-architecture.png)
 
 > **Traffic Flow:** `Developer` → `GitHub` → `Jenkins` → `Docker Hub` → `AWS EKS` ← `AWS RDS (MariaDB)`  
 > `User` → `Internet Gateway` → `Classic Load Balancer` → `Frontend Pod` → `Backend Pod` → `RDS`
